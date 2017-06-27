@@ -1,0 +1,125 @@
+.hide{
+    display: none
+}
+
+.note-editor {
+    margin-top: 120px;
+}
+
+.note-creator-place {
+    width: 100%;
+    max-width: 600px;
+    padding: 16px;
+    margin: 16px auto;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 2px;
+    transition: background 500ms ease;
+}
+
+.NoteEditor__text {
+    width: 100%;
+    resize: none;
+    margin: 5px;
+    font-size: 14px;
+    border: none;
+    font-weight: 300;
+        background-color: transparent;
+}
+
+.NoteEditor__text[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: lightgray;
+}
+
+.NoteEditor__title {
+    display: flex;
+    font-size: 14px;
+    width: 100%;
+    resize: none;
+    margin: 5px;
+    border: none;
+    font-weight: 500;
+        background-color: transparent;
+}
+
+.NoteEditor__title[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: lightgray; 
+}
+
+.NoteEditor__button {
+    border: 0 none;
+    border-radius: 3px;
+    padding: 5px 14px;
+    margin-top: 6px;
+    cursor: pointer;
+    float: right;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 160px;
+    text-align: center;
+    line-height: 1.3;
+    font-size: 13px;
+    text-transform: uppercase;
+    background-color: transparent;
+    font-weight: 500;
+    transition: all 100ms ease-in-out;
+    width: 80px;
+}
+.NoteEditor__button:hover {
+    background-color: lightgray!important;
+        opacity: .9;
+        transition: all 500ms ease;
+}
+
+.NoteEditor__button:active {
+        opacity: .5;
+        transform: scale(.97);
+        transition: all 100ms ease;
+}
+
+.NoteEditor__button:focus{
+    outline: 0;
+}
+
+.hide{
+    visibility: hidden;
+}
+div{
+    transition: visibility 1s ease;
+}
+div:focus{
+    outline: 0;
+}
+
+.scale-out-center {
+	-webkit-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	-moz-animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	animation: scale-out-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}
+@keyframes scale-out-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,20 @@
+.ColorPicker {
+    display: inline-flex;
+    margin-top: 2px;
+}
+
+.ColorPicker__swatch {
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    margin: 3px;
+    cursor: pointer;
+    border: 2px solid lightgray;
+}
+
+.ColorPicker__swatch:hover {
+    transform: scale(1.2);
+}
+.ColorPicker__swatch.selected {
+    transform: scale(1.2);
+}
