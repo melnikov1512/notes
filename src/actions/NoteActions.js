@@ -1,5 +1,4 @@
 import { ADD_NOTE, DEL_NOTE, LOAD_NOTES, UPDATE_NOTE } from '../constants/NoteConst'
-import { apiPrefix } from '../../etc/config.json'
 import axios from 'axios'
 
 function addNote(note) {
@@ -33,7 +32,7 @@ function updateNotesStore(note) {
 export function fetchNotes(email) {
     console.log('fetch notes', email)
     return ((dispatch) => {
-        axios.post(`${apiPrefix}/notes`, email)
+        axios.post(`/notes`, email)
             .then((response) => {
                 if (response.data.success) {
                     return dispatch(loadNotes(response.data.notes))
@@ -46,7 +45,7 @@ export function fetchNotes(email) {
 
 export function createNote(data) {
     return dispatch => {
-        axios.post(`${apiPrefix}/new-note`, data)
+        axios.post(`/new-note`, data)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.note)
@@ -63,7 +62,7 @@ export function createNote(data) {
 
 export function updateNote(data) {
     return dispatch => {
-        axios.post(`${apiPrefix}/notes/update`, data)
+        axios.post(`/notes/update`, data)
             .then(response => {
                 if (response.data.success) {
                     return (dispatch(updateNotesStore(response.data.note)))
@@ -80,7 +79,7 @@ export function updateNote(data) {
 
 export function delNote(key, email) {
     return dispatch => {
-        axios.post(`${apiPrefix}/notes/del`, { key, email })
+        axios.post(`/notes/del`, { key, email })
             .then(response => {
                 if (response.data.success) {
                     dispatch(deleteNote(response.data.id))

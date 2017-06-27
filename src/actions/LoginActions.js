@@ -1,5 +1,4 @@
 import { LOGIN_SUCCESS, ERROR, LOG_OUT } from '../constants/LoginConst'
-import { apiPrefix } from '../../etc/config.json'
 import axios from 'axios'
 import { browserHistory } from 'react-router'
 
@@ -25,7 +24,7 @@ export function logout() {
 }
 export function signup(newUser) {
     return dispatch => {
-        axios.post(`${apiPrefix}/signup`, newUser)
+        axios.post(`/signup`, newUser)
             .then(response => {
                 if (response.data.success) {
                     browserHistory.push('/notes')
@@ -40,7 +39,7 @@ export function signup(newUser) {
 }
 export function login(user) {
     return dispatch => {
-        axios.post(`${apiPrefix}/login`, user)
+        axios.post(`/login`, user)
             .then(response => {
                 if (response.data.success) {
                     console.log('login', response.data.user)

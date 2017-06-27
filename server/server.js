@@ -5,6 +5,7 @@ import { serverPort } from '../etc/config.json'
 import * as db from './utils/DataBaseUtils'
 import jwt from 'jsonwebtoken'
 
+var port = process.env.PORT || serverPort
 var key = '25F97zx'
 var app = express()
 db.setUpConnection()
@@ -150,6 +151,6 @@ app.post('/login', (req, res) => {
         })
     })
 })
-const server = app.listen(serverPort, function () {
-    console.log(`Server is up and running on port ${serverPort}`)
+const server = app.listen(port, function () {
+    console.log(`Server is up and running on port ${port}`)
 })

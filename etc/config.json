@@ -1,5 +1,4 @@
 {
-    "apiPrefix": "http://localhost:3012",
     "serverPort": "3012",
     "db": "mongodb://user1:User1User1@ds141232.mlab.com:41232/notes"
 }
