@@ -20,9 +20,9 @@ var _config = require('../../etc/config.json');
 
 var _config2 = _interopRequireDefault(_config);
 
-require('../models/Note');
+require('../Models/Note');
 
-require('../models/User');
+require('../Models/User');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
