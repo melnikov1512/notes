@@ -14,7 +14,7 @@ var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
 var _config = require('./etc/config.json');
 
-var _DataBaseUtils = require('./server/utils/DataBaseUtils');
+var _DataBaseUtils = require('./server/Utils/DataBaseUtils');
 
 var db = _interopRequireWildcard(_DataBaseUtils);
 
