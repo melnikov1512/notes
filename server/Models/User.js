@@ -1,12 +1,18 @@
-import mongoose from "mongoose"
+"use strict";
 
-const Schema = mongoose.Schema
+var _mongoose = require("mongoose");
 
-const UserSchema = new Schema({
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Schema = _mongoose2.default.Schema;
+
+var UserSchema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
     notes: { type: Array }
-})
+});
 
-mongoose.model('User', UserSchema)
+_mongoose2.default.model('User', UserSchema);

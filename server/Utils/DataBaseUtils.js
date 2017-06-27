@@ -1,62 +1,82 @@
-import mongoose from "mongoose"
-import config from '../../etc/config.json'
-import '../models/Note'
-import '../models/User'
+'use strict';
 
-const Note = mongoose.model('Note')
-const User = mongoose.model('User')
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.setUpConnection = setUpConnection;
+exports.listNotes = listNotes;
+exports.getNote = getNote;
+exports.createNote = createNote;
+exports.updateNote = updateNote;
+exports.deleteNote = deleteNote;
+exports.getUserByEmail = getUserByEmail;
+exports.addUser = addUser;
 
-export function setUpConnection() {
-    mongoose.connect(config.db);
-    console.log('DB connected')
+var _mongoose = require('mongoose');
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+var _config = require('../../etc/config.json');
+
+var _config2 = _interopRequireDefault(_config);
+
+require('../models/Note');
+
+require('../models/User');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Note = _mongoose2.default.model('Note');
+var User = _mongoose2.default.model('User');
+
+function setUpConnection() {
+    _mongoose2.default.connect(_config2.default.db);
+    console.log('DB connected');
 }
-
 
 //notes utils
-export function listNotes() {
-    return Note.find()
+function listNotes() {
+    return Note.find();
 }
-export function getNote(id) {
-    return Note.findById(id).then(note => {
-        return note
-    })
-}
-
-export function createNote(data) {
-    const note = new Note(data);
-
-    return note.save()
+function getNote(id) {
+    return Note.findById(id).then(function (note) {
+        return note;
+    });
 }
 
-export function updateNote(note) {
-    Note.updateOne({ _id: note._id },
-        { title: note.title, text: note.text, color: note.color },
-        (err, doc) => {
-            if (err) {
-                console.log(err)
-                return (err)
-            }
-        })
-    return Note.findById(note._id, (err, doc) => {
+function createNote(data) {
+    var note = new Note(data);
+
+    return note.save();
+}
+
+function updateNote(note) {
+    Note.updateOne({ _id: note._id }, { title: note.title, text: note.text, color: note.color }, function (err, doc) {
         if (err) {
-            return err
+            console.log(err);
+            return err;
         }
-        return doc
-    })
+    });
+    return Note.findById(note._id, function (err, doc) {
+        if (err) {
+            return err;
+        }
+        return doc;
+    });
 }
 
-export function deleteNote(id) {
-    return Note.findById(id).remove()
+function deleteNote(id) {
+    return Note.findById(id).remove();
 }
 
 //users utils
-export function getUserByEmail(checkingEmail) {
-    return User.findOne({ email: checkingEmail }).then(data => {
-        return data
-    })
+function getUserByEmail(checkingEmail) {
+    return User.findOne({ email: checkingEmail }).then(function (data) {
+        return data;
+    });
 }
 
-export function addUser(data) {
-    const user = new User(data)
-    return user.save()
+function addUser(data) {
+    var user = new User(data);
+    return user.save();
 }

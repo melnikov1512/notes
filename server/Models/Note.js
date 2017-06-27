@@ -1,11 +1,17 @@
-import mongoose from "mongoose"
+"use strict";
 
-const Schema = mongoose.Schema
+var _mongoose = require("mongoose");
 
-const NoteSchema = new Schema({
-    title     : { type: String },
-    text      : { type: String, required: true },
-    color     : { type: String },
-})
+var _mongoose2 = _interopRequireDefault(_mongoose);
 
-mongoose.model('Note', NoteSchema)
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Schema = _mongoose2.default.Schema;
+
+var NoteSchema = new Schema({
+    title: { type: String },
+    text: { type: String, required: true },
+    color: { type: String }
+});
+
+_mongoose2.default.model('Note', NoteSchema);
