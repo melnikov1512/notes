@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import { serverPort } from '../etc/config.json'
 import * as db from './utils/DataBaseUtils'
 import jwt from 'jsonwebtoken'
+import path from 'path'
 
 var port = process.env.PORT || serverPort
 var key = '25F97zx'
@@ -14,12 +15,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors({ origin: '*' }))
 
-app.get('/', (req, res) => {
-    res.send('Hello API')
-})
+app.use(express.static(path.resolve(__dirname, '../build')))
 
 //notes
-app.post('/notes', (req, res) => {
+app.post('/api/notes', (req, res) => {
     let token = jwt.verify(req.body.email, key)
     console.log('fetch notes', token)
     return db.getUserByEmail(token.email)
@@ -39,7 +38,7 @@ app.post('/notes', (req, res) => {
         })
 })
 
-app.post('/new-note', (req, res) => {
+app.post('/api/new-note', (req, res) => {
     let token = jwt.verify(req.body.email, key)
     return db.createNote(req.body.note)
         .then(note => {
@@ -55,7 +54,7 @@ app.post('/new-note', (req, res) => {
         })
 })
 
-app.post('/notes/update', (req, res) => {
+app.post('/api/notes/update', (req, res) => {
     return db.updateNote(req.body).then(note => {
         res.json({
             success: true,
@@ -64,7 +63,7 @@ app.post('/notes/update', (req, res) => {
     })
 })
 
-app.post('/notes/del', (req, res) => {
+app.post('/api/notes/del', (req, res) => {
     let token = jwt.verify(req.body.email, key)
     return db.deleteNote(req.body.key)
         .then(id => {
@@ -84,7 +83,7 @@ app.post('/notes/del', (req, res) => {
 })
 
 //login&signin 
-app.post('/signup', (req, res) => {
+app.post('/api/signup', (req, res) => {
     let emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         passwordReg = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/,
         newUser = req.body
@@ -131,7 +130,7 @@ app.post('/signup', (req, res) => {
 
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     return db.getUserByEmail(req.body.email).then(user => {
         if (!user || (req.body.password != user.password)) {
             return res.json({
@@ -151,6 +150,15 @@ app.post('/login', (req, res) => {
         })
     })
 })
-const server = app.listen(port, function () {
+
+app.get('*', (req, res) => {
+    console.log('index.html', req.path)
+    res.sendFile(path.resolve(__dirname, '../build/index.html'));
+})
+
+app.listen(port, function () {
     console.log(`Server is up and running on port ${port}`)
 })
+
+console.log('dirname', __dirname)
+console.log('resolve', path.resolve(__dirname, '../build/index.html'))

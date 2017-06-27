@@ -32,7 +32,7 @@ function updateNotesStore(note) {
 export function fetchNotes(email) {
     console.log('fetch notes', email)
     return ((dispatch) => {
-        axios.post(`/notes`, email)
+        axios.post(`/api/notes`, email)
             .then((response) => {
                 if (response.data.success) {
                     return dispatch(loadNotes(response.data.notes))
@@ -45,7 +45,7 @@ export function fetchNotes(email) {
 
 export function createNote(data) {
     return dispatch => {
-        axios.post(`/new-note`, data)
+        axios.post(`/api/new-note`, data)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.note)
@@ -62,7 +62,7 @@ export function createNote(data) {
 
 export function updateNote(data) {
     return dispatch => {
-        axios.post(`/notes/update`, data)
+        axios.post(`/api/notes/update`, data)
             .then(response => {
                 if (response.data.success) {
                     return (dispatch(updateNotesStore(response.data.note)))
@@ -79,7 +79,7 @@ export function updateNote(data) {
 
 export function delNote(key, email) {
     return dispatch => {
-        axios.post(`/notes/del`, { key, email })
+        axios.post(`/api/notes/del`, { key, email })
             .then(response => {
                 if (response.data.success) {
                     dispatch(deleteNote(response.data.id))

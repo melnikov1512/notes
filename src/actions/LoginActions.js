@@ -24,7 +24,7 @@ export function logout() {
 }
 export function signup(newUser) {
     return dispatch => {
-        axios.post(`/signup`, newUser)
+        axios.post(`/api/signup`, newUser)
             .then(response => {
                 if (response.data.success) {
                     browserHistory.push('/notes')
@@ -39,7 +39,7 @@ export function signup(newUser) {
 }
 export function login(user) {
     return dispatch => {
-        axios.post(`/login`, user)
+        axios.post(`/api/login`, user)
             .then(response => {
                 if (response.data.success) {
                     console.log('login', response.data.user)
