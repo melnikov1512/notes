@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.8.5"
-  },
-  "dependencies": {
+    "react-scripts": "0.8.5",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "dependencies": {
     "axios": "^0.15.3",
     "body-parser": "^1.17.1",
     "cors": "^2.8.1",
@@ -28,7 +28,7 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server.js",
     "postinstall": "react-scripts build",
     "startDev": "react-scripts start",
     "build": "react-scripts build",

@@ -12,9 +12,9 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _config = require('../etc/config.json');
+var _config = require('./etc/config.json');
 
-var _DataBaseUtils = require('./utils/DataBaseUtils');
+var _DataBaseUtils = require('./server/utils/DataBaseUtils');
 
 var db = _interopRequireWildcard(_DataBaseUtils);
 
@@ -39,7 +39,7 @@ app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use((0, _cors2.default)({ origin: '*' }));
 
-app.use(_express2.default.static(_path2.default.resolve(__dirname, '../build'))
+app.use(_express2.default.static(_path2.default.resolve(__dirname, './build'))
 
 //notes
 );app.post('/api/notes', function (req, res) {
@@ -169,7 +169,7 @@ app.post('/api/login', function (req, res) {
 
 app.get('*', function (req, res) {
     console.log('index.html', req.path);
-    res.sendFile(_path2.default.resolve(__dirname, '../build/index.html'));
+    res.sendFile(_path2.default.resolve(__dirname, './build/index.html'));
 });
 
 app.listen(port, function () {
@@ -177,4 +177,4 @@ app.listen(port, function () {
 });
 
 console.log('dirname', __dirname);
-console.log('resolve', _path2.default.resolve(__dirname, '../build/index.html'));
+console.log('resolve', _path2.default.resolve(__dirname, './build/index.html'));
