@@ -22,7 +22,7 @@ export default function user(state = initialState, action) {
         }
         case LOG_OUT: {
             return {
-                user: { name: '', email: '' },
+                user: null,
                 error: null
             }
         }

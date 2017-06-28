@@ -41,8 +41,8 @@ app.use((0, _cors2.default)({ origin: '*' }));
 
 app.use(_express2.default.static(_path2.default.resolve(__dirname, './build'))
 
-//notes
-);app.post('/api/notes', function (req, res) {
+    //notes
+); app.post('/api/notes', function (req, res) {
     var token = _jsonwebtoken2.default.verify(req.body.email, key);
     console.log('fetch notes', token);
     return db.getUserByEmail(token.email).then(function (user) {
@@ -86,21 +86,20 @@ app.post('/api/notes/del', function (req, res) {
     var token = _jsonwebtoken2.default.verify(req.body.email, key);
     return db.deleteNote(req.body.key).then(function (id) {
         db.getUserByEmail(token.email).then(function (user) {
-            console.log('user', user.email);
-            console.log('id', id);
-            var index = user.notes.indexOf(id);
-            user.notes.splice(index, 1);
+            console.log('notes', user.notes)
+            user.notes = user.notes.filter(value => value !== req.body.key);
+            console.log('notes after', user.notes)
             user.save();
             return res.json({
                 success: true,
-                id: id
+                id: req.body.key
             });
         });
     });
 }
 
-//login&signin 
-);app.post('/api/signup', function (req, res) {
+    //login&signin 
+); app.post('/api/signup', function (req, res) {
     var emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         passwordReg = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/,
         newUser = req.body;

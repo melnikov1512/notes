@@ -17,23 +17,14 @@ export default function notes(state = initialState, action) {
                 }]
             }
         case UPDATE_NOTE: {
+            console.log('update note', action.payload)
             let newNotes = [...state.notes]
-            let indexOfUpdatingNote = newNotes.findIndex((value) => {
-                if (value._id === action.payload._id)
-                    return value
-                return 0
-            })
+            let indexOfUpdatingNote = newNotes.findIndex((value) => value._id === action.payload._id)
             newNotes[indexOfUpdatingNote] = action.payload
             return { notes: newNotes }
         }
         case DEL_NOTE: {
-            let newNotes = [...state.notes]
-            let indexOfDelNote = newNotes.findIndex((value) => {
-                if (value._id === action.payload)
-                    return value
-                return 0
-            })
-            newNotes.splice(indexOfDelNote, 1)
+            let newNotes = state.notes.filter(value => value._id !== action.payload)
             return { notes: newNotes }
         }
         case LOAD_NOTES:

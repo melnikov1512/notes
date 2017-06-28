@@ -65,7 +65,7 @@ export function updateNote(data) {
         axios.post(`/api/notes/update`, data)
             .then(response => {
                 if (response.data.success) {
-                    return (dispatch(updateNotesStore(response.data.note)))
+                    return (dispatch(updateNotesStore(data)))
                 } else {
                     console.log('update note error')
                 }
@@ -82,7 +82,7 @@ export function delNote(key, email) {
         axios.post(`/api/notes/del`, { key, email })
             .then(response => {
                 if (response.data.success) {
-                    dispatch(deleteNote(response.data.id))
+                    dispatch(deleteNote(key))
                 } else {
                     console.log('delete note error')
                 }

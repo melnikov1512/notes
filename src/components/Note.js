@@ -7,10 +7,11 @@ class Note extends Component {
 
     constructor(props) {
         super(props)
+        const { title, text, color } = props.data
         this.state = {
-            title: this.props.title,
-            text: this.props.text,
-            color: this.props.colorNote,
+            title,
+            text,
+            color,
             firstFocus: false,
             editStarting: false,
             colorChanging: false,
@@ -18,13 +19,20 @@ class Note extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.data !== nextProps.data) {
+            this.setState({ ...nextProps.data })
+        }
+    }
+
+
     handleDelIconFocus(e) {
         e.stopPropagation()
     }
 
     deleteNote() {
         this.setState({ childFocused: false })
-        this.props.delNote(this.props.noteId, this.props.email)
+        this.props.delNote(this.props.data._id, this.props.email)
     }
 
     handleTitleChange(e) {
@@ -37,7 +45,7 @@ class Note extends Component {
     handleButtonClick() {
         this.setState({ editStarting: false, firstFocus: false })
         this.props.updateNote({
-            _id: this.props.noteId,
+            _id: this.props.data._id,
             title: this.state.title,
             text: this.state.text,
             color: this.state.color
@@ -63,7 +71,8 @@ class Note extends Component {
                 this.setState({ childFocused: false })
             }
             else {
-                this.setState({ editStarting: false, colorChanging: false, firstFocus: false, title: this.props.title, text: this.props.text, color: this.props.colorNote })
+                const { title, text, color } = this.props.data
+                this.setState({ editStarting: false, colorChanging: false, firstFocus: false, title, text, color })
             }
         }, 50)
     }
