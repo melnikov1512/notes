@@ -23,12 +23,9 @@ class NoteEditor extends Component {
     handleButtonClick() {
 
         this.props.createNote({
-            email: this.props.user,
-            note: {
-                title: this.state.title,
-                text: this.state.text,
-                color: this.state.color
-            }
+            title: this.state.title,
+            text: this.state.text,
+            color: this.state.color
         })
         this.setState({ title: '', text: '', color: '#FFFFFF', editStarting: false })
 

@@ -17,9 +17,28 @@ function userError(error) {
 
 
 export function logout() {
-    browserHistory.push('/login')
+    browserHistory.push('/')
+    localStorage.removeItem('access_token');
     return {
         type: LOG_OUT
+    }
+}
+export function initAuth() {
+    return dispatch => {
+        const accessToken = localStorage.getItem('access_token')
+        if (!accessToken) {
+            return;
+        }
+        axios.post(`/api/me`, { accessToken })
+            .then(response => {
+                if (response.data.success) {
+                    browserHistory.push('/notes')
+                    return dispatch(loginAction(response.data.name))
+                }
+                else {
+                    localStorage.removeItem('access_token')
+                }
+            });
     }
 }
 export function signup(newUser) {
@@ -27,8 +46,9 @@ export function signup(newUser) {
         axios.post(`/api/signup`, newUser)
             .then(response => {
                 if (response.data.success) {
+                    localStorage.setItem('access_token', response.data.user.token)
                     browserHistory.push('/notes')
-                    return dispatch(loginAction(response.data.user))
+                    return dispatch(loginAction(response.data.user.name))
                 }
                 return dispatch(userError(response.data.error))
             })
@@ -43,8 +63,9 @@ export function login(user) {
             .then(response => {
                 if (response.data.success) {
                     console.log('login', response.data.user)
+                    localStorage.setItem('access_token', response.data.user.token)
                     browserHistory.push('/notes')
-                    return dispatch(loginAction(response.data.user))
+                    return dispatch(loginAction(response.data.user.name))
                 }
                 return dispatch(userError(response.data.error))
             })

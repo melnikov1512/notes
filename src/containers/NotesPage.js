@@ -8,22 +8,22 @@ class NotesPage extends Component {
 
 
     componentWillMount() {
-        if (this.props.user.user) {
-            this.props.fetchNotes(this.props.user.user)
+        if (this.props.user.name) {
+            this.props.fetchNotes(this.props.user.name)
         }
     }
     componentWillReceiveProps(nextProps) {
         console.log('nextprops', nextProps.user.user)
-        if (nextProps.user.user !== this.props.user.user) {
-            nextProps.fetchNotes(nextProps.user.user)
+        if (nextProps.user.name !== this.props.user.name) {
+            nextProps.fetchNotes(nextProps.user.name)
         }
     }
 
     render() {
         return (
             <div className='row'>
-                <NoteEditor user={this.props.user.user ? this.props.user.user.email : ''} createNote={this.props.createNote} />
-                <NoteGrid user={this.props.user.user ? this.props.user.user.email : ''} notes={this.props.notes.notes} delNote={this.props.delNote} updateNote={this.props.updateNote} />
+                <NoteEditor createNote={this.props.createNote} />
+                <NoteGrid notes={this.props.notes.notes} delNote={this.props.delNote} updateNote={this.props.updateNote} />
             </div>
         )
     }

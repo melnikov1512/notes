@@ -1,7 +1,7 @@
 import { LOGIN_SUCCESS, ERROR, LOG_OUT } from '../constants/LoginConst'
 
 const initialState = {
-    user: null,
+    name: null,
     error: null
 }
 
@@ -9,8 +9,9 @@ export default function user(state = initialState, action) {
 
     switch (action.type) {
         case LOGIN_SUCCESS: {
+            console.log('login succes', action)
             return {
-                user: action.user,
+                name: action.name,
                 error: null
             }
         }

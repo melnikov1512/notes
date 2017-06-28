@@ -31,10 +31,7 @@ class NavBar extends Component {
                                         aria-expanded="false">{this.props.name}
                                         <span className="caret"></span></a>
                                     <ul className="dropdown-menu">
-                                        <li> <NavLink to='/'>Notes</NavLink> </li>
-                                        <li> <NavLink to='/login'>Login</NavLink> </li>
-                                        <li className="divider"></li>
-                                        <li> <NavLink to='/login' onClick={() => this.handleLogoutClick()}>Log out</NavLink> </li>
+                                        <li> <NavLink to='/' onClick={() => this.handleLogoutClick()}>Log out</NavLink> </li>
                                     </ul>
                                 </li>
                             </ul>

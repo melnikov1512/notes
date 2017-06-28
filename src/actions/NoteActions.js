@@ -29,12 +29,13 @@ function updateNotesStore(note) {
     })
 }
 
-export function fetchNotes(email) {
-    console.log('fetch notes', email)
+export function fetchNotes() {
+    const accessToken = localStorage.getItem('access_token')
     return ((dispatch) => {
-        axios.post(`/api/notes`, email)
+        axios.post(`/api/notes`, { accessToken })
             .then((response) => {
                 if (response.data.success) {
+                    console.log('fetch notes', response.data.notes)
                     return dispatch(loadNotes(response.data.notes))
                 }
                 return dispatch(loadNotes([]))
@@ -43,9 +44,11 @@ export function fetchNotes(email) {
     })
 }
 
-export function createNote(data) {
+export function createNote(note) {
+    console.log('create note', note)
+    const accessToken = localStorage.getItem('access_token')
     return dispatch => {
-        axios.post(`/api/new-note`, data)
+        axios.post(`/api/new-note`, { note, accessToken })
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.note)
@@ -61,6 +64,7 @@ export function createNote(data) {
 }
 
 export function updateNote(data) {
+    console.log('update note', data)
     return dispatch => {
         axios.post(`/api/notes/update`, data)
             .then(response => {
@@ -77,12 +81,14 @@ export function updateNote(data) {
     }
 }
 
-export function delNote(key, email) {
+export function delNote(_id) {
+    console.log('delete note', _id)
+    const accessToken = localStorage.getItem('access_token')
     return dispatch => {
-        axios.post(`/api/notes/del`, { key, email })
+        axios.post(`/api/notes/del`, { _id, accessToken })
             .then(response => {
                 if (response.data.success) {
-                    dispatch(deleteNote(key))
+                    dispatch(deleteNote(_id))
                 } else {
                     console.log('delete note error')
                 }

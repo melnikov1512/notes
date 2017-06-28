@@ -43,7 +43,8 @@ app.use(_express2.default.static(_path2.default.resolve(__dirname, './build'))
 
     //notes
 ); app.post('/api/notes', function (req, res) {
-    var token = _jsonwebtoken2.default.verify(req.body.email, key);
+    console.log('body', req.body.accessToken)
+    var token = _jsonwebtoken2.default.verify(req.body.accessToken, key);
     console.log('fetch notes', token);
     return db.getUserByEmail(token.email).then(function (user) {
         return Promise.all(user.notes.map(function (curValue) {
@@ -60,7 +61,7 @@ app.use(_express2.default.static(_path2.default.resolve(__dirname, './build'))
 });
 
 app.post('/api/new-note', function (req, res) {
-    var token = _jsonwebtoken2.default.verify(req.body.email, key);
+    var token = _jsonwebtoken2.default.verify(req.body.accessToken, key);
     return db.createNote(req.body.note).then(function (note) {
         return db.getUserByEmail(token.email).then(function (user) {
             user.notes.push('' + note._id);
@@ -83,16 +84,16 @@ app.post('/api/notes/update', function (req, res) {
 });
 
 app.post('/api/notes/del', function (req, res) {
-    var token = _jsonwebtoken2.default.verify(req.body.email, key);
-    return db.deleteNote(req.body.key).then(function (id) {
+    var token = _jsonwebtoken2.default.verify(req.body.accessToken, key);
+    return db.deleteNote(req.body._id).then(function (id) {
         db.getUserByEmail(token.email).then(function (user) {
             console.log('notes', user.notes)
-            user.notes = user.notes.filter(value => value !== req.body.key);
+            user.notes = user.notes.filter(value => value !== req.body._id);
             console.log('notes after', user.notes)
             user.save();
             return res.json({
                 success: true,
-                id: req.body.key
+                id: req.body._id
             });
         });
     });
@@ -138,7 +139,7 @@ app.post('/api/notes/del', function (req, res) {
                 success: true,
                 user: {
                     name: user.name,
-                    email: _jsonwebtoken2.default.sign({ email: user.email }, key)
+                    token: _jsonwebtoken2.default.sign({ email: user.email }, key)
                 }
             });
         });
@@ -160,7 +161,29 @@ app.post('/api/login', function (req, res) {
             success: true,
             user: {
                 name: user.name,
-                email: _jsonwebtoken2.default.sign({ email: user.email }, key)
+                token: _jsonwebtoken2.default.sign({ email: user.email }, key)
+            }
+        });
+    });
+});
+
+app.post('/api/me', function (req, res) {
+    console.log('init', req.body.accessToken)
+    var token = _jsonwebtoken2.default.verify(req.body.accessToken, key);
+    return db.getUserByEmail(token.email).then(function (user) {
+        if (!user) {
+            return res.json({
+                success: false,
+                error: {
+                    type: 'init auth',
+                    message: 'incorrect access token'
+                }
+            });
+        }
+        return res.json({
+            success: true,
+            user: {
+                name: user.name,
             }
         });
     });

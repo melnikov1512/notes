@@ -7,7 +7,7 @@ class NoteGrid extends Component {
     render() {
         let noteComponents = this.props.notes.map((el, i) => {
             return (
-                <Note email={this.props.user} key={el._id} delNote={this.props.delNote} updateNote={this.props.updateNote} data={el} />
+                <Note key={el._id} delNote={this.props.delNote} updateNote={this.props.updateNote} data={el} />
             )
         })
 

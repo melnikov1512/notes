@@ -32,7 +32,7 @@ class Note extends Component {
 
     deleteNote() {
         this.setState({ childFocused: false })
-        this.props.delNote(this.props.data._id, this.props.email)
+        this.props.delNote(this.props.data._id)
     }
 
     handleTitleChange(e) {
