@@ -18,7 +18,7 @@ function userError(error) {
 
 export function logout() {
     browserHistory.push('/')
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('access_token')
     return {
         type: LOG_OUT
     }

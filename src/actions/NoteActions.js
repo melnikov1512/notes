@@ -1,4 +1,4 @@
-import { ADD_NOTE, DEL_NOTE, LOAD_NOTES, UPDATE_NOTE } from '../constants/NoteConst'
+import { ADD_NOTE, DEL_NOTE, LOAD_NOTES, UPDATE_NOTE, CLEAR_STORE } from '../constants/NoteConst'
 import axios from 'axios'
 
 function addNote(note) {
@@ -29,6 +29,12 @@ function updateNotesStore(note) {
     })
 }
 
+
+export function clearStore() {
+    return {
+        type: CLEAR_STORE
+    }
+}
 export function fetchNotes() {
     const accessToken = localStorage.getItem('access_token')
     return ((dispatch) => {

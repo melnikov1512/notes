@@ -7,6 +7,7 @@ class NavBar extends Component {
 
     handleLogoutClick() {
         this.props.logout()
+        this.props.clearStore()
     }
 
     render() {

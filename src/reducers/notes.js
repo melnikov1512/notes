@@ -1,4 +1,4 @@
-import { ADD_NOTE, DEL_NOTE, LOAD_NOTES, UPDATE_NOTE } from '../constants/NoteConst'
+import { ADD_NOTE, DEL_NOTE, LOAD_NOTES, UPDATE_NOTE, CLEAR_STORE } from '../constants/NoteConst'
 
 const initialState = {
     notes: []
@@ -29,6 +29,8 @@ export default function notes(state = initialState, action) {
         }
         case LOAD_NOTES:
             return { notes: action.payload }
+        case CLEAR_STORE:
+            return { notes: [] }
         default:
             return state
     }
