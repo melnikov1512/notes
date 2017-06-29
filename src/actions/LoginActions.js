@@ -27,6 +27,7 @@ export function initAuth() {
     return dispatch => {
         const accessToken = localStorage.getItem('access_token')
         if (!accessToken) {
+            browserHistory.push('/')
             return;
         }
         axios.post(`/api/me`, { accessToken })
@@ -38,6 +39,7 @@ export function initAuth() {
                 }
                 else {
                     localStorage.removeItem('access_token')
+                    browserHistory.push('/notes')
                 }
             });
     }
