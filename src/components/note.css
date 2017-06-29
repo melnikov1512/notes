@@ -45,3 +45,8 @@
 .color{
         transition: background 500ms ease;
 }
+
+.block-with-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

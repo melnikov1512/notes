@@ -99,13 +99,13 @@ class Note extends Component {
 
                     {/*title string*/}
                     {(this.state.editStarting || this.state.title) ?
-                        <ContentEditable id='note-title' className={`NoteEditor__title`} placeholder={`${this.state.editStarting ? 'TITLE' : ''}`}
+                        <ContentEditable id='note-title' className={`NoteEditor__title block-with-text`} placeholder={`${this.state.editStarting ? 'TITLE' : ''}`}
                             html={this.state.title} disabled={!this.state.editStarting}
                             onChange={(e) => this.handleTitleChange(e)} /> :
                         null}
 
                     {/*text string*/}
-                    <ContentEditable id='note-text' className={`NoteEditor__text`} placeholder={`${this.state.editStarting ? 'TEXT' : ''}`}
+                    <ContentEditable id='note-text' className={`NoteEditor__text block-with-text`} placeholder={`${this.state.editStarting ? 'TEXT' : ''}`}
                         html={this.state.text}
                         disabled={!this.state.editStarting}
                         onChange={(e) => this.handleTextChange(e)} />
