@@ -180,6 +180,7 @@ app.post('/api/me', function (req, res) {
                 }
             });
         }
+        console.log('user', user)
         return res.json({
             success: true,
             user: {
@@ -197,6 +198,3 @@ app.get('*', function (req, res) {
 app.listen(port, function () {
     console.log('Server is up and running on port ' + port);
 });
-
-console.log('dirname', __dirname);
-console.log('resolve', _path2.default.resolve(__dirname, './build/index.html'));
