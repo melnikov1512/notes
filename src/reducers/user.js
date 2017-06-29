@@ -11,7 +11,7 @@ export default function user(state = initialState, action) {
         case LOGIN_SUCCESS: {
             console.log('login succes', action)
             return {
-                name: action.name,
+                name: action.user,
                 error: null
             }
         }

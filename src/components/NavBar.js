@@ -21,7 +21,7 @@ class NavBar extends Component {
                                 <span className='icon-bar'></span>
                                 <span className='icon-bar'></span>
                             </button>
-                            <NavLink className="navbar-brand" to='/'>Notes</NavLink>
+                            <NavLink className="navbar-brand">Notes</NavLink>
                         </div>
                         <div className='collapse navbar-collapse' id='navbar'>
                             <ul className='nav navbar-nav pull-right'>

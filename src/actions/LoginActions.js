@@ -33,7 +33,8 @@ export function initAuth() {
             .then(response => {
                 if (response.data.success) {
                     browserHistory.push('/notes')
-                    return dispatch(loginAction(response.data.name))
+                    console.log('init', response.data.user)
+                    return dispatch(loginAction(response.data.user.name))
                 }
                 else {
                     localStorage.removeItem('access_token')
