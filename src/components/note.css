@@ -21,7 +21,7 @@
 .note-editor-place {
     z-index: 1;
     width: 100%;
-    max-width: 600px;
+    max-width: 300px;
     padding: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     border-radius: 2px;
@@ -42,7 +42,7 @@
     margin: 0 0 5px 5px;
 }
 
-.color{
+.color-note{
         transition: background 500ms ease;
 }
 

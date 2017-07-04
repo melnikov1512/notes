@@ -1,0 +1,37 @@
+.size {
+    display: inline-block;
+    width: 250px;
+    vertical-align: middle;
+}
+
+.from-search {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background: rgba(0, 0, 0, 0.04);
+    background-image: none;
+    border: none;
+    border-radius: 2px;
+    transition: background 500ms ease;
+}
+.from-search:focus{
+    background-color: white;
+    outline: 0;
+}
+.color{
+    background-color: white !important;
+}
+.pos-p{
+    position: relative;
+}
+.del-icon {
+    outline: 0;
+    position: absolute;
+    right: 20px;
+    top: -1px;
+    font-size: 2em;
+    color: rgba(0,0,0,0.3);
+    cursor: pointer;
+}

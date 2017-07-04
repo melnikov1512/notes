@@ -22,7 +22,7 @@ var _jsonwebtoken = require('jsonwebtoken');
 
 var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
-var _path = require('path');
+var _path = require('path');var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 

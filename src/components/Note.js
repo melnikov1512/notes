@@ -83,7 +83,7 @@ class Note extends Component {
         }
         return (
             <div onFocus={() => this.handleFocus()} onBlur={() => this.handleBlur()} tabIndex='0'
-                className={`${this.state.editStarting ? 'note-editor-place' : 'col-md-3 col-sm-3 col-lg-3'} ${this.state.colorChanging ? 'color' : ''}`}
+                className={`${this.state.editStarting ? 'note-editor-place' : 'col-md-3 col-sm-3 col-lg-3'} ${this.state.colorChanging ? 'color-note' : ''}`}
                 style={!this.state.editStarting ? {} : style} >
                 <div tabIndex='0'
                     className={`${this.state.editStarting ? '' : 'note-place'}`}

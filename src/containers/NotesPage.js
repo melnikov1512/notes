@@ -23,14 +23,14 @@ class NotesPage extends Component {
         return (
             <div className='row'>
                 <NoteEditor createNote={this.props.createNote} />
-                <NoteGrid notes={this.props.notes.notes} delNote={this.props.delNote} updateNote={this.props.updateNote} />
+                <NoteGrid filter={this.props.search.filter} notes={this.props.notes.notes} delNote={this.props.delNote} updateNote={this.props.updateNote} />
             </div>
         )
     }
 }
 function mapStateToProps(state) {
-    let { notes, user } = state
-    return { notes, user }
+    let { notes, user, search } = state
+    return { notes, user, search }
 }
 
 export default connect(mapStateToProps, { delNote, fetchNotes, createNote, updateNote })(NotesPage)
