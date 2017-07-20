@@ -35,3 +35,9 @@
     color: rgba(0,0,0,0.3);
     cursor: pointer;
 }
+.search-placeholder::-moz-placeholder{
+    color: black
+}
+.search-placeholder::-webkit-input-placeholder{
+    color: black
+}

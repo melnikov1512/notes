@@ -20,7 +20,7 @@ class Search extends Component {
     render() {
         return (
             <form className='navbar-form navbar-left pos-p'>
-                <input id='search-el' className={`size from-search ${this.state.text ? 'color' : ''}`} placeholder='Search'
+                <input id='search-el' className={`size from-search search-placeholder ${this.state.text ? 'color' : ''}`} placeholder='Search'
                     onChange={(e) => this.handleTextChange(e)}
                     value={this.state.text} />
                 {this.state.text ?
